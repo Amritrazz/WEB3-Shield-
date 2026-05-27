@@ -1,5 +1,7 @@
 # WEB3-Shield-
 **Web3-Shield** is a full-stack security monorepo that stops crypto phishing and wallet drainers. A Next.js frontend monitors threat alerts, a Python FastAPI backend runs AI detection to block malicious smart contracts, and a containerized Docker suite (PostgreSQL, Redis, Neo4j, MongoDB) securely logs data and traces hacker wallets live.
+
+
 🛡️ Web3-Shield: Real-Time Phishing Detection & Transaction Interception Layer
 Web3-Shield is an automated, full-stack security framework designed to act as a real-time anti-fraud interceptor for blockchain transactions. It protects decentralized applications (dApps) and user wallets by evaluating incoming transaction logic, smart contract behavior, and domain metadata before threats can reach the blockchain network.
 
