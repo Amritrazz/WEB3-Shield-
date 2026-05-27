@@ -1,0 +1,8 @@
+# Query: python.defaultInterpreterPath
+# ContextLines: 1
+
+1 result - 1 file
+
+.vscode\settings.json:
+  5    "python.analysis.importFormat": "absolute",
+  6: "python.defaultInterpreterPath": "D:\\Python project\\Web3\\my-monorepo\\apps\\backend\\venv\\Scripts\\python.exe"

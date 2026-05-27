@@ -1,0 +1,7 @@
+{
+  "python.analysis.extraPaths": [
+    ".\\apps\\backend"
+  ],
+  "python.analysis.importFormat": "absolute",
+  "python.defaultInterpreterPath": "D:\\Python project\\Web3\\my-monorepo\\apps\\backend\\venv\\Scripts\\python.exe"
+}
