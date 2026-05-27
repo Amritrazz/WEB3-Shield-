@@ -1,0 +1,17 @@
+# Core FastAPI Framework
+fastapi==0.110.0
+uvicorn==0.28.0
+pydantic==2.6.4
+pydantic-settings==2.2.1
+
+# Database Drivers & Connectors
+sqlalchemy==2.0.28          # For PostgreSQL Relational Mapping
+asyncpg==0.29.0             # High-speed Async driver for PostgreSQL
+motor==3.6.2                # Asynchronous driver for MongoDB
+redis==5.0.3                # Redis client library
+neo4j==5.18.0               # Official Neo4j Graph Driver
+
+# Security & Authentication
+python-jose[cryptography]==3.3.0  # JWT Token generation & verification
+passlib[bcrypt]==1.7.4            # Password hashing engine
+python-multipart==0.0.9           # For handling file/form data streams

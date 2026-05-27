@@ -1,0 +1,53 @@
+node_modules
+.next
+dist
+.turbo
+.env*
+# Node dependencies & builds
+node_modules/
+.next/
+dist/
+.turbo/
+
+# Python / ML environments & caches
+__pycache__/
+.venv/
+env/
+*.pyc
+.ipynb_checkpoints/
+.pkl
+.h5
+
+# Sensitive Secrets
+.env
+.env.local
+.env.*.local
+# ==========================================
+# 1. Environment Variables & Security Secrets
+# ==========================================
+.env
+*.pem
+
+# ==========================================
+# 2. Node.js & Frontend Builds
+# ==========================================
+node_modules/
+.next/
+dist/
+
+# ==========================================
+# 3. Python & Machine Learning Caches
+# ==========================================
+__pycache__/
+*.pyc
+*.egg-info/
+
+# ==========================================
+# 4. Large Dataset Restrictions (ML Data)
+# ==========================================
+ml/data/raw/
+
+# ==========================================
+# 5. OS Specific System Files
+# ==========================================
+.DS_Store

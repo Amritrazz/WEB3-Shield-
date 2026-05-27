@@ -1,0 +1,71 @@
+name: Web3-Shield CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  audit-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python Environment
+        uses: actions/util/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Testing Dependencies
+        run: |
+          cd apps/backend
+          pip install -r requirements.txt pytest
+
+      - name: Run Backend Core Test Suite
+        run: |
+          cd apps/backend
+          pytest
+
+  build-and-ship:
+    needs: audit-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: actions/github/setup-buildx-action@v3
+
+      # Log into DockerHub or your cloud container registry (AWS ECR, DigitalOcean)
+      - name: Log in to Docker Hub
+        uses: actions/github/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and Push Backend Image
+        uses: actions/github/build-push-action@v5
+        with:
+          context: ./apps/backend
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/web3-shield-backend:latest
+
+      - name: Build and Push Frontend Image
+        uses: actions/github/build-push-action@v5
+        with:
+          context: ./apps/frontend
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/web3-shield-frontend:latest
+
+      # Optional Deployment step to your live cloud server (VPS) via SSH
+      - name: Trigger Webhook/SSH Deploy to Cloud Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd /var/www/my-monorepo
+            git pull origin main
+            docker-compose -f docker-compose.prod.yml pull
+            docker-compose -f docker-compose.prod.yml up -d
